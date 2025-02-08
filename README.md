@@ -1,4 +1,7 @@
-# Prime Backup
+# Prime Backup-zhTW
+
+此版本為繁體中文版，以繁體中文替代簡體中文，檔案同為zh_cn.yml只是內容簡體改成繁體。
+若有翻譯錯誤可自行修改。感謝
 
 **English** | [中文](README.zh.md)
 
