@@ -1,0 +1,525 @@
+prime_backup:
+  command:
+    help:
+      no_help: 指令{}無詳細幫助內容
+    confirm:
+      sent: 正在確認{}任務
+      noop: 沒有什麼是需要確認的
+      not_your_task: 你沒有什麼是需要確認的
+    abort:
+      sent: 正在終止{}任務
+      noop: 沒有什麼是需要確認的
+      no_permission: 權限不足，無法終止當前任務
+      not_abort_able: 當前任務{}無法被終止
+
+  task:
+    _base:
+      no_confirm: 未做出選擇, {}任務已終止
+      aborted: '{}任務已終止'
+    backup_clear_tag:
+      name: 清除備份標籤
+      cleared: 已清除備份{0}的標籤{1}
+      not_exists: 備份{0}不存在標籤{1}
+    backup_create:
+      name: 創建備份
+      start: 創建備份中...請稍等
+      abort.save_wait_time_out: 等待世界保存超時, 備份任務終止
+      abort.unloaded: 插件卸載, 備份任務終止
+      completed: '備份完成, ID {}, 耗時{}, 體積{} (+{})'
+      cost.hover: |-
+        等待世界保存: {}
+        创建备份: {}
+    backup_delete:
+      name: 删除備份
+      multi_delete: '準備删除多个備份 (數量={}): {}'
+      protected: 備份{}受到保護, 無法刪除
+      deleting: 正在删除{}
+      deleted: 已删除備份{}, 釋放{}
+    backup_delete_range:
+      name: 範圍删除備份
+      no_backup: 未找到可删除的備份
+      to_delete_count: '將要删除以下{}個備份: '
+      ellipsis.hover: 省略{}個備份
+      confirm_target: 删除
+      deleted: 已删除{}
+      deleted.skipped: 已跳過{} (備份不存在)
+      done: 任務完成, 共删除{}個備份, 共釋放{}
+    backup_diff:
+      name: 對比備份
+      no_diff: 備份{}與{}間沒有任何差異
+      found_diff: '備份{1}與{2}間存在{0}個差異: {3}'
+      diff:
+        mode: 模式變動
+        blob: 數據變動
+        link_target: 符號鏈接目標變動
+        owner: uid/gid變動
+        mtime: 修改日期變動
+        other: 其他
+    backup_import:
+      name: 導入備份
+      file_not_found: 文件{}不存在
+      not_a_file: 目標{}不是一個文件
+      cannot_infer_backup_format: 無法從文件名{}推斷格式, 請顯式指定
+      start: 正在從{}導入備份, 使用格式{}
+      backup_metadata_not_found: '備份導入失敗, 文件{}中不存在可用的備份元數據: {}'
+      backup_metadata_not_found.suggestion:
+        請確保要導入的備份是一个由{name}導出的備份。你也可以帶上參數§7--auto-meta§r来自動生成新的元數據
+      done: '已從{}導入備份, ID {}'
+    backup_export:
+      name: 導出備份
+      already_exists: 文件{}已存在
+      exporting: 正在導出備份{}
+      unfinished: 備份導出未完成
+      exported: 已將備份{}導出至{}, 耗時{}, 文件大小{}
+      failures: '在導出過程中發現{}個錯誤:'
+    backup_list:
+      name: 列出備份
+      title: 備份列表
+      backup_count: '共有{}個備份:'
+      size: 體積
+      next: 下一頁
+      prev: 上一頁
+      aborted: 列出備份任務終止
+    backup_prune:
+      name: 清理備份
+      nothing_to_prune: 未找到需要被清理的備份
+      list_to_be_pruned: '將要清理的備份 (共{}個): {}'
+      prune: 正在删除{}
+      aborted: 清理備份任務終止
+      done: 清理完成, 共删除{}個備份、{}個數據對象, 共釋放{}
+    backup_prune_all:
+      name: 全範圍清理備份
+      nothing_to_do: 没有生效的清理子任務, 清理終止
+      what:
+        regular: 普通備份
+        temporary: 临时備份
+      start: 开始清理{}
+      done: 已完成所有清理子任务, 共删除{}个備份、{}个数据对象, 共释放{}
+    backup_rename:
+      name: 重命名備份
+      modified: 已将備份{}的注释修改为{}
+    backup_restore:
+      name: 回檔
+      no_backup: 未找到可用於回檔的備份
+      show_backup: 將要回檔至{}
+      confirm_target: 回檔
+      countdown: '{}秒後將§c回檔§r至{}'
+      countdown.hover: 點我或輸入{}以終止回檔
+    backup_set_tag:
+      name: 设置備份标签
+      set: 已将備份{0}的标签{1}设置为{2}
+    backup_show:
+      name: 展示備份
+      title: '備份{}'
+      date: '創建日期: {}'
+      comment: '注釋: {}'
+      comment_edit: '點我修改備份{}的注釋'
+      stored_size: '儲存大小: {} ({})'
+      raw_size: '原始大小: {}'
+      creator: '創建者: {}'
+      creator.hover: '點擊以列出{}創建的所有備份'
+      tag.title: '標籤(共{}條):'
+      tag.empty_title: '標籤: {}'
+      tag.empty: 空
+    backup_show_tag:
+      name: 展示備份标签
+      title: 備份{}的标签
+      amount: '标签数量: {}'
+      value_type: '值类型: {}'
+      create: 点我创建标签{}
+      edit: 点我编辑标签{}
+      clear: 点我清除标签{}
+      not_exists: 不存在
+    backup_show_tag_single:
+      name: 展示備份的单个标签
+      value: 備份{0}的标签{1}是{2}
+      not_exists: 備份{0}不存在标签{1}
+    crontab_list_job:
+      name: 列出定时作业
+      title: 定时作业列表
+      enabled: 已启用
+      disabled: 已禁用
+      running: 正在运行
+      paused: 已暂停
+      line.running: '{} {}, 下次运行: {} ({})'
+      line.paused: '{} {}'
+    crontab_operate:
+      name: 操控定时作业
+      disabled: 定时作业{}已被禁用，无法操作
+      pause.already: 定时作业{}已处于暂停状态
+      pause.done: 定时作业{}已暂停至本插件卸载
+      pause.done.notes: 如果你想要永久禁用这个作业, 你需要修改配置文件中的相关项
+      resume.already: '定时作业{}已处于运行状态, 下次运行: {}'
+      resume.done: '定时作业{}已继续, 下次运行: {}'
+    crontab_show:
+      name: 展示定时作业状态
+      title: 定时作业{}
+      enabled: '已启用: {}'
+      running: '运行中: {}'
+      interval: '间隔: {}'
+      crontab: '定时: {}'
+      jitter: '抖动: {}'
+      next_run_date: '下次运行: {}'
+      quick_actions: '快捷操作: {}'
+      pause: 暂停
+      pause.hover: 点击以暂停运行作业{}
+      resume: 继续
+      resume.hover: 点击以继续运行作业{}
+    db_inspect_backup:
+      name: 审查備份
+      title: '備份{}'
+      id: 'ID: {}'
+      timestamp: '时间戳 (纳秒): {} (日期: {})'
+      creator: '创建者: {} ({})'
+      comment.regular: '注释: {}'
+      comment.translated: '注释: {} ({})'
+      targets: '備份目标: {}'
+      tags: '标签: {}'
+      raw_size: '原始大小: {} ({})'
+      stored_size: '储存大小: {} ({})'
+      file_count:
+        all: '文件总数: {}'
+        file: '普通文件: {}'
+        directory: '文件夹: {}'
+        symlink: '符号链接: {}'
+    db_inspect_blob:
+      name: 审查数据对象
+      title: '数据对象{}'
+      hash: '哈希: {}'
+      compress: '压缩方法: {}'
+      raw_size: '原始大小: {} ({})'
+      stored_size: '储存大小: {} ({})'
+      used_by: '关联文件数: {}'
+    db_inspect_file:
+      name: 审查備份文件
+      title: '備份{0}的文件{1}'
+      backup_id: '所属備份: {}'
+      path: '路径: {}'
+      mode: '模式: {} ({})'
+      content: '内容: {}'
+      blob.hash: '数据对象哈希: {}'
+      blob.compress: '数据对象压缩方法: {}'
+      blob.raw_size: '数据对象原始大小: {} ({})'
+      blob.stored_size: '数据对象储存大小: {} ({})'
+      uid.full: 'Uid: {} / {}'
+      uid.simple: 'Uid: {}'
+      gid.full: 'Gid: {} / {}'
+      gid.simple: 'Gid: {}'
+      ctime: '创建时间: {} ({})'
+      mtime: '修改时间: {} ({})'
+      atime: '访问时间: {} ({})'
+    db_inspect_object_base:
+      hover:
+        backup_id: 点击以审查備份{}
+        blob_hash: 点击以审查数据对象{}
+    db_migrate_compress_method:
+      name: 压缩方法迁移
+      missing_library:
+        无法导入目标压缩方法, 请确保你已经安装了{}方法所需的Python依赖库。
+        在文档{}中搜索compress_method以获得更多帮助
+      show_whats_going_on: 准备把文件池所使用的压缩方法迁移至{}，压缩阈值为{}
+      confirm_target: 迁移
+      start: 正在将压缩方法迁移至{}，见控制台以了解进度
+      done: '已将压缩方法迁移至{}, 数据对象总储存大小: {} -> {} ({})'
+    db_migrate_hash_method:
+      name: 哈希算法迁移
+      hash_method_unchanged: 哈希算法已经是{}了
+      missing_library:
+        无法导入目标哈希算法, 请确保你已经安装了算法{}所需的Python依赖库。
+        在文档{}中搜索hash_method以获得更多帮助
+      show_whats_going_on: 准备把文件池所使用的哈希算法从{}迁移至{}
+      confirm_target: 迁移
+      start: 正在将哈希算法从{}迁移至{}，见控制台以了解进度
+      done: 已将哈希算法从{}迁移至{}
+    db_overview:
+      name: 概覽數據庫
+      title: 數據庫概覽
+      db_version: '數據庫版本: {}'
+      db_file_size: '數據庫文件大小: {}'
+      hash_method: '哈希算法: {}'
+      backup_count: '備份數: {}'
+      file_count: '文件數: {}'
+      file_raw_size: '文件總大小: {}'
+      blob_count: '數據對象數: {}'
+      blob_stored_size: '數據對象總儲存大小: {} ({})'
+      blob_raw_size: '數據對象總原始大小: {}'
+    db_vacuum:
+      name: 整理數據庫
+      start: 正在整理數據庫, 請稍等...
+      done: '數據庫整理完畢, 耗時{}, 體積變化: {} -> {} ({}) ({})'
+    db_validate:
+      name: 驗證數據庫
+      nothing_to_validate: 沒有要驗證的内容
+      validate_blobs:
+        .: 正在驗證所有數據對象, 请稍等...
+        done: 已驗證{}/{}個數據對象
+        all_ok: 全部{}個數據對象都是健康的
+        found_bad_blobs: 發現了{}/{}個異常數據對象
+        invalid: '非法數據對象: {}個'
+        missing: '文件缺失的數據對象: {}個'
+        corrupted: '文件損壞的數據對象: {}個'
+        mismatched: '信息不匹配的數據對象: {}個'
+        orphan: '孤兒數據對象: {}個'
+        affected: '影響範圍: {}/{}個文件對象, {}/{}個備份'
+        see_log: '見日志文件 {} 以了解這些數據對象的詳細信息及影響範圍'
+      validate_files:
+        .: 正在驗證所有文件對象 (包括文件、文件夾、符號鏈接), 請稍等...
+        done: 已驗證{}/{}個文件
+        all_ok: 全部{}個文件都是健康的
+        found_bad_files: 發現了{}/{}個異常文件
+        invalid: '非法文件對象: {}個'
+        bad_blob_relation: '與數據對象錯誤關聯: {}個'
+        file_blob_mismatched: '文件與數據對象間信息不匹配: {}個'
+      done: 驗證完成, 耗時{}
+    help:
+      name: 展示幫助
+      commands:
+        title: 【指令幫助】
+        content: |-
+          §7{prefix}§r: 展示歡迎界面
+          §7{prefix} help §e[<指令>]§r: 展示全部指令/給定指令的詳細幫助
+          §7{prefix} make §e[<注釋>]§r: 創建一個備份。§e<注釋>§r為可選注釋
+          §7{prefix} back §6[<備份ID>]§r: 回檔至給定備份。詳見§7{prefix} help back§r
+          §7{prefix} list [...]§r: 列出備份, 展示備份列表。詳見§7{prefix} help list§r
+          §7{prefix} show §6<備份ID>§r: 展示給定備份的詳細信息
+          §7{prefix} rename §6<備份ID>§r §e<新注釋>§r: 修改給定備份的注釋
+          §7{prefix} delete §6<備份ID> [<備份ID>...]§r: 删除給定備份。可輸入多個備份ID
+          §7{prefix} delete_range §6<備份ID范围>§r: 删除給定ID範圍的備份
+          §7{prefix} export §6<備份ID> §7[...]§r: 導出給定備份到文件。詳見§7{prefix} help export§r
+          §7{prefix} import §3<文件路徑> §7[...]§r: 導入外部的備份文件。詳見§7{prefix} help import§r
+          §7{prefix} prune §6<備份ID>§r: 手動觸發一次備份清理
+          §7{prefix} diff §6<舊備份ID> §6<新備份ID>§r: 展示兩個備份之間的文件差異
+          §7{prefix} crontab §a<作業ID> §7[...]§r: 操作定時作業。詳見§7{prefix} help crontab§r
+          §7{prefix} tag §6<備份ID> §7[...]§r: 操作給定備份的標籤。詳見§7{prefix} help tag§r
+          §7{prefix} database [...]§r: 操作數據庫。詳見§7{prefix} help database§r
+          §7{prefix} confirm§r: 確認當前的任務操作
+          §7{prefix} abort§r: 終止當前的任務操作
+      arguments:
+        title: 【參數幫助】
+        content: |-
+          §6<備份ID>§r: 一个正整數, 備份的唯一ID, 如: §612§r
+          §6<備份ID範圍>§r: 一个整數閉區間, 如: §63-12§r, §64~9§r, §64~§r, §64~§r, §6*§r
+      other:
+        title: 【其它】
+        nodes_with_help: '含詳細幫助頁的子命令: {}'
+        docs: '文檔: {}'
+        docs.hover: 點擊以打開連結
+      node_help:
+        back: |-
+          §d【back指令幫助】§r
+          §7{prefix} back §6[<備份ID>] §7[--可選參數]§r
+          回檔至给定備份
+          §d【參數幫助】§r
+          §6<備份ID>§r: 備份的ID。若未給出，則使用非臨時備份的最新的備份
+          §d【可選參數】§r
+          §7--confirm§r: 跳过确认步骤，直接开始回档
+          §7--fail-soft§r: 在导出过程中跳过导出失败的文件，因此单个文件的失败不会导致整个导出的失败
+          §7--no-verify§r: 不校验导出文件的内容
+        crontab: |-
+          §d【crontab指令帮助】§r
+          操作定时作业
+          §d【指令帮助】§r
+          §7{prefix}§r: 查看当前启用的所有定时作业
+          §7{prefix} §a<作业ID>§r: 查看给定作业的状态
+          §7{prefix} §a<作业ID> §7pause§r: 临时暂停给定作业。下次插件重载时，该作业将继续运行
+          §7{prefix} §a<作业ID> §7resume§r: 取消给定作业的暂停状态，继续运行
+          §d【参数帮助】§r
+          §a<作业ID>§r: 可用选项: {job_ids}
+        database: |-
+          §d【database指令帮助】§r
+          操作{name}的核心SQLite数据库
+          §d【指令帮助】§r
+          §7{prefix} database overview§r: 查看数据库信息概览
+          §7{prefix} database inspect backup §6<备份ID>§r: 审查给定备份的原始信息
+          §7{prefix} database inspect file §6<备份ID> §3<文件路径>§r: 审查给定文件的原始信息
+          §7{prefix} database inspect blob §d<哈希值>§r: 审查给定数据对象的原始信息
+          §7{prefix} database validate §a<组件>§r: 验证数据库内容的正确性。耗时可能较长
+          §7{prefix} database vacuum§r: 手动执行SQLite数据库的整理操作，减少数据库文件的体积
+          §7{prefix} database migrate_compress_method <压缩方法>§r: 将当前使用的压缩方法迁移至另一种方法。这将影响所有数据，耗时可能较长
+          §7{prefix} database migrate_hash_method <哈希算法>§r: 将当前使用的哈希算法迁移至另一种算法。这将影响所有数据，耗时可能较长
+          {scheduled_compact_notes}
+          §d【参数帮助】§r
+          §6<文件路径>§r: 要审查的文件的路径，相对備份根目录
+          §d<哈希值>§r: 要审查的数据对象的哈希值。可以是哈希串的前缀，只要唯一即可
+          §d<压缩方法>§r: 可用选项: {compress_methods}
+          §d<哈希算法>§r: 可用选项: {hash_methods}
+          §a<组件>§r: 
+          - §ablobs§r: 验证数据对象的正确性，如数据大小、哈希值
+          - §afiles§r: 验证文件对象的正确性，如文件与数据的关联
+          - §aall§r: 验证上述全部
+        database.scheduled_compact.on: '注意: 在当前配置下，{name}会定期执行数据库整理操作。详见{cmd}'
+        database.scheduled_compact.off: '注意: 在当前配置下，定时数据库整理操作已被禁用'
+        export: |-
+          §d【export指令帮助】§r
+          以给定格式导出给定備份到§3export§r文件夹
+          §7{prefix} export §6<備份ID> §3[<导出格式>] §7[--可选参数]§r
+          §d【参数帮助】§r
+          §3<导出格式>§r: 可用选项: {export_formats}。若未指定，则使用§3tar§r格式
+          §d【可选参数】§r
+          §7--overwrite§r: 覆盖已存在的備份导出文件。默认情况下，若输出文件已存在则不导出
+          §7--fail-soft§r: 在导出过程中跳过导出失败的文件，因此单个文件的失败不会导致整个导出的失败。注意: 损坏的文件可能会破坏tar一类的导出文件
+          §7--no-verify§r: 不校验导出文件的内容
+          §7--no-meta§r: 在导出的文件中不添加備份元信息文件{backup_meta_file_name}
+          §d【例子】§r
+          §7{prefix} export 12§r: 使用默认的§3tar§r格式导出備份§612§r
+          §7{prefix} export 12 tar_gz§r: 使用§3tar_gz§r格式导出備份§612§r
+          §7{prefix} export 12 tar --fail-soft --no-verify§r: 使用§3tar§r格式尽力而为地导出備份§612§r
+        import: |-
+          §d【import指令幫助】§r
+          從給定路徑導入一个外部的備份
+          §7{prefix} import §3<文件路径> §3[<備份格式>] §7[--可选参数]§r
+          §d【参数帮助】§r
+          §3<文件路径>§r: 需要导入的備份文件的路径。可以是一个绝对路径，或者一个相对路径 (相对 MCDR 的根目录)。
+          如果路径中含有空格字符，你需要把整个路径用英文双引号包起来
+          §3<備份格式>§r: 可用选项: {backup_formats}。若未指定，则尝试从文件名推断
+          §d【可选参数】§r
+          §7--auto-meta§r: 若備份元信息文件不存在，基于文件内容自动生成一个
+          §7--meta-override §e<備份元信息json>§r: 一个json对象字符串。若给定，无论備份元信息文件是否存在，都会用给定的值作为导入的備份的元数据内容
+          §d【例子】§r
+          §7{prefix} import /path/to/the/backup.tar.gz§r
+          §7{prefix} import /path/to/a/tarball/foo.bar tar§r
+          §7{prefix} import D:\storage\my_backup.zip§r
+          §7{prefix} import ./pb_files/export/backup_1.tgz tar_gz§r
+        list: |-
+          §d【list指令幫助】§r
+          列出備份, 展示備份列表
+          §7{prefix} list [<頁數>] [--參數 <值>]§r
+          §d【可選参數】§r
+          §7--per-page §e<每頁行數>§r: 設置每頁展示的備份數量。默認: §e10§r
+          §7--creator §e<創建者>§r: 僅列出給定創建者的備份
+          §7--from §b<起始日期>§r: 僅列出給定日期之後的備份
+          §7--to §b<結束日期>§r: 僅列出給定日期之前的備份
+          §7-a, --all§r: 展示所有的備份。默認情况下, 隱藏備份、臨時備份不會被展示
+          §7--flags§r: 展示備份標誌位, 这些標誌位是基於備份的標籤生成的
+          §d【例子】§r
+          §7{prefix} list --all --flags§r
+          §7{prefix} list --from 20231130§r
+          §7{prefix} list 3 --per-page 20§r
+        tag: |-
+          §d【tag指令帮助】§r
+          操作給定備份的標籤
+          §d【指令幫助】§r
+          §7{prefix} tag §6<備份ID>§r: 查看備份的所有標籤。對於已知的標籤，無論是否存在，都會被列出
+          §7{prefix} tag §6<備份ID> §b<標籤名>§r: 查看備份给定標籤的值
+          §7{prefix} tag §6<備份ID> §b<標籤名> §7set §e<标签值>§r: 設置備份給定標籤的值
+          §7{prefix} tag §6<備份ID> §b<標籤名> §7clear§r: 清空備份的給定標籤
+      permission_denied: 你沒有權限查看子命令{}的幫助信息
+    welcome:
+      title: '{name} {version}'
+      common_commands: '【常用指令】'
+      common_commands.hover: '輸入指令{}以查看完整的指令列表'
+      recent_backups: '【最新的{}個備份】'
+      quick_actions:
+        title: 【快捷操作】
+        create: 創建一个新備份
+        create.comment: 我是一個注釋
+        restore: 回檔到最新的備份
+        restore_explain: 準確地說，回檔到最新的非臨時備份
+
+  job:
+    _base:
+      found_ongoing:
+        unknown_task: 未知
+        skip: '發現正在進行的任務{}, 跳過本次{}作業執行'
+        wait_retry: '發現正在進行的任務{}, {}作業將在{}後重始'
+      completed: '{}完成, 下次執行: {}'
+      completed_with_error: '{}失敗, 下次執行: {}'
+      next_run_date_paused: 已暫停
+    create_db_backup:
+      name: 創建數據庫備份
+      name_titled: 創建數據庫備份
+    prune_backup:
+      name: 清理備份
+      name_titled: 清理備份
+    schedule_backup:
+      name: 定時備份
+      name_titled: 定時備份
+      triggered: '{}觸發'
+      reset_on_backup: '檢測到新增的備份, 重置定時器。下次定時備份: {}'
+    vacuum_sqlite:
+      name: 整理數據庫
+      name_titled: 整理數據庫
+
+  error:
+    backup_file_not_found: 備份{}不存在文件{}
+    backup_not_found: ID為{}的備份不存在
+    blob_hash_not_unique: '給定的哈希值{}無法唯一確定一个數據對象'
+    blob_hash_not_unique.candidates: '找到了至少{}個可能的數據對象: {}'
+    blob_not_found: 哈希值為{}的數據對象不存在
+    db_locked: 任務{}執行失敗, 數據庫已被鎖定。請稍候再試
+    disabled: 插件已禁用
+    generic: 任務{}執行失敗, 見控制台以了解錯誤詳情
+    missing_backup_id: 請提供備份ID
+    node:
+      bad_date: 非法日期格式
+      bad_id_range: 非法ID範圍
+      bad_hex_string: 非法的十六進制字符串
+      invalid_json:
+        empty: 空輸入
+        prefix: 未找到"{{"前缀
+        suffix: 未找到"}}"後缀
+        value: 'Json解析失敗: {}'
+    permission_denied: 權限不足
+    too_much_ongoing_task:
+      exclusive: '請等待當前任務{}完成'
+      try_abort: 你也可以選擇終止當前任務
+      try_abort.hover: 點我或輸入{}以終止當前任務
+      generic: '待處理的任務過多 (最大值{}), 請等待一些任務完成'
+
+  text_components:
+    backup_brief: '備份{}: {}'
+    backup_comment:
+      none: 空
+      scheduled_backup: 定時備份
+      pre_restore: '回檔至#{}前的自動備份'
+    backup_full:
+      creator: '創建者: {}'
+      restore: 回檔至備份{}
+      delete: 删除備份{}
+      protected: 備份{}受保護
+    backup_id:
+      hover_id: '備份ID: {}'
+      hover_date: '創建日期: {}'
+      hover_comment: '注釋: {}'
+      hover_creator: '創建者: {}'
+      hover_click_hint: 點擊以展示詳情
+    command:
+      run: '點擊以執行{}'
+      suggest: '點擊以補全{}'
+    confirm_hint:
+      base: '請在{}内作出選擇: [{}], [{}]'
+      confirm: 確認{}
+      confirm.hover: 點我或輸入指令{}以確認{}
+      abort: 終止{}
+      abort.hover: 點我或輸入指令{}以終止{}
+    crontab:
+      help_url: 'Crontab字符串解釋網址: {}'
+    date_diff:
+      ago: '{}前'
+      later: '{}後'
+    dual_size_hover: |-
+      储存大小: {} ({})
+      原始大小: {}
+    duration:
+      text: '{}{}'
+      s: 秒
+      m: 分鐘
+      h: 小時
+      d: 天
+      plural_suffix: ''
+    operator:
+      player: 玩家{}
+      console: 控制台
+      command_source: 指令源{}
+      unknown: 未知
+      prime_backup:
+        .: Prime Backup
+        import: 導入
+        test: 測試
+        scheduled_backup: 定時備份
+        pre_restore: 回檔前的自動備份
+
+  backup_tag:
+    hidden: 隱藏備份
+    temporary: 臨時備份
+    protected: 受保護備份
